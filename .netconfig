@@ -22,3 +22,39 @@
 
 	etag = 19087699f05396205e6b050d999a43b175bd242f6e8fac86f6df936310178b03
 	weak
+[file ".github/dependabot.yml"]
+	url = https://github.com/devlooped/oss/tree/main/.github/dependabot.yml
+	sha = e733294084fb3e75d517a2e961e87df8faae7dc6
+
+	etag = 3bf8d9214a15c049ca5cfe80d212a8cbe4753b8a638a9804ef73d34c7def9618
+	weak
+[file ".github/release.yml"]
+	url = https://github.com/devlooped/oss/tree/main/.github/release.yml
+	sha = 0c23e24704625cf75b2cb1fdc566cef7e20af313
+
+	etag = 310df162242c95ed19ed12e3c96a65f77e558b46dced676ad5255eb12caafe75
+	weak
+[file ".github/workflows/dotnet-file.yml"]
+	url = https://github.com/devlooped/oss/tree/main/.github/workflows/dotnet-file.yml
+	sha = 8fa147d4799d73819040736c399d0b1db2c2d86c
+
+	etag = 1ca805a23656e99c03f9d478dba8ccef6e571f5de2ac0e9bb7e3c5216c99a694
+	weak
+[file ".github/workflows/includes.yml"]
+	url = https://github.com/devlooped/oss/tree/main/.github/workflows/includes.yml
+	sha = 85829f2510f335f4a411867f3dbaaa116c3ab3de
+
+	etag = 086f6b6316cc6ea7089c0dcc6980be519e6ed6e6201e65042ef41b82634ec0ee
+	weak
+[file ".github/workflows/build.yml"]
+	url = https://github.com/devlooped/oss/tree/main/.github/workflows/build.yml
+	sha = 56c2b8532c2f86235a0f5bd00ba6eba126f199cf
+
+	etag = bf99c19427f4372ecfe38ec56aa8c411058684fb717da5661f17ac00388b3602
+	weak
+[file ".github/workflows/publish.yml"]
+	url = https://github.com/devlooped/oss/tree/main/.github/workflows/publish.yml
+	sha = 56c2b8532c2f86235a0f5bd00ba6eba126f199cf
+
+	etag = 2ef43521627aa3a91dd55bdc2856ec0c6a93b42485d4fe9d6b181f9ee42c8e18
+	weak
