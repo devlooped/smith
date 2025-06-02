@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" Version="9.5.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.5" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0-preview.4.25258.110" />
-    <PackageReference Include="NuGetizer" Version="1.2.4" PrivateAssets="all" Pack="false" />
+    <PackageReference Include="NuGetizer" Version="1.2.4" />
     <PackageReference Include="Anthropic" Version="3.6.0" />
     <PackageReference Include="Spectre.Console" Version="0.50.0" />
     <PackageReference Include="Spectre.Console.Json" Version="0.50.0" />
@@ -28,6 +28,13 @@
   <ItemGroup>
     <None Update="Smith.props" PackFolder="build" />
     <None Update="Smith.targets" PackFolder="build" />
-    <Content Include="cs\AddUserSecrets.cs" Pack="true" BuildAction="Compile" />
+    <Content Include="cs\*.cs" Pack="true" BuildAction="Compile" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Smith.props" />
+    <None Include="Smith.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Smith.Extensions\Smith.Extensions.csproj" />
   </ItemGroup>
 </Project>
