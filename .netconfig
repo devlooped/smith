@@ -1,0 +1,24 @@
+[file ".gitignore"]
+	url = https://github.com/devlooped/oss/blob/main/.gitignore
+	sha = e0be248fff1d39133345283b8227372b36574b75
+
+	etag = c449ec6f76803e1891357ca2b8b4fcb5b2e5deeff8311622fd92ca9fbf1e6575
+	weak
+[file "license.txt"]
+	url = https://github.com/devlooped/oss/blob/main/license.txt
+	sha = 0683ee777d7d878d4bf013d7deea352685135a05
+
+	etag = 2c6335b37e4ae05eea7c01f5d0c9d82b49c488f868a8b5ba7bff7c6ff01f3994
+	weak
+[file "Directory.Build.props"]
+	url = https://github.com/devlooped/oss/tree/main/src/Directory.Build.props
+	sha = 2fff747a9673b499c99f2da183cdd5263fdc9333
+
+	etag = 0fccddf04f282fe98122ab2610dc2972c205a521254559bf013655c6271b0017
+	weak
+[file "Directory.Build.targets"]
+	url = https://github.com/devlooped/oss/tree/main/src/Directory.Build.targets
+	sha = a8b208093599263b7f2d1fe3854634c588ea5199
+
+	etag = 19087699f05396205e6b050d999a43b175bd242f6e8fac86f6df936310178b03
+	weak

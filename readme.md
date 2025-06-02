@@ -1,0 +1,1 @@
+An opinionated meta-package for doing AI agents using Microsoft.Extensions.AI and MCP
