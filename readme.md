@@ -1,8 +1,8 @@
 An opinionated meta-package for doing AI agents using Microsoft.Extensions.AI and MCP and dotnet run file.
 
-Examle Claude-based agent:
+Example Claude-based agent:
 
-![](https://raw.githubusercontent.com/devlooped/smith/main/assets/run.png)
+![](https://github.com/devlooped/smith/blob/main/assets/run.png?raw=true)
 
 ```csharp
 #:package Smith@0.*
