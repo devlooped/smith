@@ -14,8 +14,8 @@ public static class UserSecretsConfigurationExtensions
     /// <returns>The configuration builder.</returns>
     public static IConfigurationBuilder AddUserSecrets(this IConfigurationBuilder configuration)
     {
-        if (!string.IsNullOrEmpty(ThisAssembly.Constants.UserSecretsId))
-            return configuration.AddUserSecrets(ThisAssembly.Constants.UserSecretsId, reloadOnChange: false);
+        if (!string.IsNullOrEmpty(ThisAssembly.Project.UserSecretsId))
+            return configuration.AddUserSecrets(ThisAssembly.Project.UserSecretsId, reloadOnChange: false);
 
         return configuration;
     }

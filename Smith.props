@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Constant Include="UserSecretsId" Value="$(UserSecretsId)" />
+    <ProjectProperty Include="UserSecretsId" />
   </ItemGroup>
 
 </Project>
