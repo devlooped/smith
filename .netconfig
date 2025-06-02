@@ -58,3 +58,9 @@
 
 	etag = 2ef43521627aa3a91dd55bdc2856ec0c6a93b42485d4fe9d6b181f9ee42c8e18
 	weak
+[file ".github/workflows/dotnet-env.yml"]
+	url = https://github.com/devlooped/oss/tree/main/.github/workflows/dotnet-env.yml
+	sha = 77e83f238196d2723640abef0c7b6f43994f9747
+
+	etag = fcb9759a96966df40dcd24906fd328ddec05953b7e747a6bb8d0d1e4c3865274
+	weak
