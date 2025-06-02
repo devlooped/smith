@@ -32,4 +32,8 @@
     <ProjectProperty Include="UserSecretsId" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="*.json;*.ini" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>
