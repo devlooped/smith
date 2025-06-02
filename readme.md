@@ -1,9 +1,14 @@
-An opinionated meta-package for doing AI agents using Microsoft.Extensions.AI and MCP and dotnet run file.
+![Icon](assets/icon.png) Smith
+============
 
 [![Version](https://img.shields.io/nuget/vpre/Smith.svg?color=royalblue)](https://www.nuget.org/packages/Smith)
 [![Downloads](https://img.shields.io/nuget/dt/Smith.svg?color=green)](https://www.nuget.org/packages/Smith)
 [![License](https://img.shields.io/github/license/devlooped/Smith.svg?color=blue)](https://github.com//devlooped/Smith/blob/main/license.txt)
 [![Build](https://github.com/devlooped/Smith/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/devlooped/Smith/actions)
+
+<!-- #content -->
+
+An opinionated meta-package for doing AI agents using Microsoft.Extensions.AI and MCP and dotnet run file.
 
 Example Claude-based agent:
 
@@ -15,8 +20,8 @@ Example Claude-based agent:
 var configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
     .AddUserSecrets()
-    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-    .AddIniFile("appsettings.ini", optional: true, reloadOnChange: true)
+    .AddJsonFile("appsettings.json", optional: true)
+    .AddIniFile("appsettings.ini", optional: true)
     .Build();
 
 var services = new ServiceCollection();

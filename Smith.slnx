@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Smith.Extensions/Smith.Extensions.csproj" />
+  <Project Path="src/Smith/Smith.msbuildproj" Type="13b669be-bb05-4ddf-9536-439f39a36129" />
+</Solution>
