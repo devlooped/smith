@@ -1,8 +1,13 @@
 An opinionated meta-package for doing AI agents using Microsoft.Extensions.AI and MCP and dotnet run file.
 
+[![Version](https://img.shields.io/nuget/vpre/Smith.svg?color=royalblue)](https://www.nuget.org/packages/Smith)
+[![Downloads](https://img.shields.io/nuget/dt/Smith.svg?color=green)](https://www.nuget.org/packages/Smith)
+[![License](https://img.shields.io/github/license/devlooped/Smith.svg?color=blue)](https://github.com//devlooped/Smith/blob/main/license.txt)
+[![Build](https://github.com/devlooped/Smith/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/devlooped/Smith/actions)
+
 Example Claude-based agent:
 
-![](https://github.com/devlooped/smith/blob/main/assets/run.png?raw=true)
+![](https://raw.githubusercontent.com/devlooped/smith/main/assets/run.png)
 
 ```csharp
 #:package Smith@0.*
