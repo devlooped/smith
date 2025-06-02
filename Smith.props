@@ -3,6 +3,7 @@
     <ImplicitUsings>true</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <NoWarn>TA001;$(NoWarn)</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AssemblyMetadata Include="MSBuildProjectName" Value="$(MSBuildProjectName)" />
+    <Constant Include="UserSecretsId" Value="$(UserSecretsId)" />
   </ItemGroup>
 
 </Project>
