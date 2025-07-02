@@ -1,9 +1,8 @@
-<Project>
+﻿<Project>
   <PropertyGroup>
     <ImplicitUsings>true</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <NoWarn>TA001;$(NoWarn)</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,17 +21,15 @@
     <Using Include="Microsoft.Extensions.Hosting"/>
     <Using Include="Microsoft.Extensions.AI"/>
 
+    <Using Include="Devlooped.Extensions.AI"/>
+    <Using Include="Weaving"/>
+
     <Using Include="Spectre.Console"/>
     <Using Include="Spectre.Console.Json"/>
-
-    <Using Include="Polly"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectProperty Include="UserSecretsId" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Update=".env" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Never" />
     <Content Include="*.json;*.ini" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
