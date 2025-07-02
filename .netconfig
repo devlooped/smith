@@ -12,9 +12,9 @@
 	weak
 [file "src/Directory.Build.props"]
 	url = https://github.com/devlooped/oss/tree/main/src/Directory.Build.props
-	sha = 2fff747a9673b499c99f2da183cdd5263fdc9333
+	sha = 81d972fd0760c244d134dae7f4b17d6c43cb004a
 
-	etag = 0fccddf04f282fe98122ab2610dc2972c205a521254559bf013655c6271b0017
+	etag = 1368697c1521e465a1dea88b93787b1c7def441c37d62afc903fb8d07179e4f6
 	weak
 [file "src/Directory.Build.targets"]
 	url = https://github.com/devlooped/oss/tree/main/src/Directory.Build.targets
@@ -63,4 +63,9 @@
 	sha = 77e83f238196d2723640abef0c7b6f43994f9747
 
 	etag = fcb9759a96966df40dcd24906fd328ddec05953b7e747a6bb8d0d1e4c3865274
+	weak
+[file "src/Smith/Extensions/System/Throw.cs"]
+	url = https://github.com/devlooped/catbag/blob/main/System/Throw.cs
+	sha = 3012d56be7554c483e5c5d277144c063969cada9
+	etag = 43c81c6c6dcdf5baee40a9e3edc5e871e473e6c954c901b82bb87a3a48888ea0
 	weak
