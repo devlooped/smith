@@ -3,32 +3,51 @@
 
 [![Version](https://img.shields.io/nuget/vpre/Smith.svg?color=royalblue)](https://www.nuget.org/packages/Smith)
 [![Downloads](https://img.shields.io/nuget/dt/Smith.svg?color=green)](https://www.nuget.org/packages/Smith)
-[![License](https://img.shields.io/github/license/devlooped/Smith.svg?color=blue)](https://github.com//devlooped/Smith/blob/main/license.txt)
-[![Build](https://github.com/devlooped/Smith/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/devlooped/Smith/actions)
+[![License](https://img.shields.io/github/license/devlooped/smith.svg?color=blue)](https://github.com//devlooped/smith/blob/main/license.txt)
+[![Build](https://github.com/devlooped/smith/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/devlooped/smith/actions)
 
 <!-- #content -->
+Run AI-powered C# files using Microsoft.Extensions.AI and Devlooped.Extensions.AI
 
-An opinionated meta-package for doing AI agents using Microsoft.Extensions.AI and MCP and dotnet run file.
+Example leveraging [Grok](https://console.x.ai/):
 
-Example Claude-based agent:
+```csharp
+#:package Smith@0.*
+
+// Sample X.AI client usage with .NET
+var messages = new Chat()
+{
+    { "system", "You are a highly intelligent AI assistant." },
+    { "user", "What is 101*3?" },
+};
+
+IChatClient grok = new GrokClient(Throw.IfNullOrEmpty(Env.Get("XAI_API_KEY")))
+    .GetChatClient("grok-3-mini")
+    .AsIChatClient();
+
+var options = new GrokChatOptions
+{
+    ReasoningEffort = ReasoningEffort.High, // or ReasoningEffort.Low
+    Search = GrokSearch.Auto,               // or GrokSearch.On/GrokSearch.Off
+};
+
+var response = await grok.GetResponseAsync(messages, options);
+
+AnsiConsole.MarkupLine($":robot: {response.Text}");
+```
+
+> [!NOTE]
+> The most useful namespaces and dependencies for developing Microsoft.Extensions.AI-powered 
+> applications are automatically referenced and imported when using this package.
+
+Example using Claude:
 
 ![](https://raw.githubusercontent.com/devlooped/smith/main/assets/run.png)
 
 ```csharp
 #:package Smith@0.*
 
-var configuration = new ConfigurationBuilder()
-    .AddEnvironmentVariables()
-    .AddUserSecrets()
-    .AddJsonFile("appsettings.json", optional: true)
-    .AddIniFile("appsettings.ini", optional: true)
-    .Build();
-
-var services = new ServiceCollection();
-
-services.AddHttpClient("ai").AddStandardResilienceHandler();
-
-services.AddChatClient(services => new Anthropic.AnthropicClient(
+var chat = new Anthropic.AnthropicClient(Throw.
     configuration["Claude:Key"] ?? throw new InvalidOperationException("Missing Claude:Key configuration."),
     services.GetRequiredService<IHttpClientFactory>().CreateClient("ai")))
     .UseLogging()
@@ -93,6 +112,24 @@ static class Prompts
 }
 ```
 
+
+## Configuration / Environment Variables
+
+The `Env` class provides access to the following variables/configuration automatically: 
+
+* `.env` files: in local and parent directories
+* `~/.env` file: in the user's home directory (`%userprofile%\.env` on Windows)
+* All default configuration sources from [App Builder](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host?tabs=appbuilder#host-builder-settings): 
+    * Environment variables prefixed with DOTNET_.
+    * Command-line arguments.
+    * appsettings.json.
+    * appsettings.{Environment}.json.
+    * Secret Manager when the app runs in the Development environment.
+    * Environment variables.
+    * Command-line arguments.
+
+
+<!-- #content -->
 <!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
 # Sponsors 
 
