@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace Weaving;
+namespace Smith;
 
 /// <summary>
 /// Allows retrieving configuration settings for the app environment using the 
