@@ -22,7 +22,6 @@
     <Using Include="Microsoft.Extensions.AI"/>
 
     <Using Include="Devlooped.Extensions.AI"/>
-    <Using Include="Weaving"/>
 
     <Using Include="Spectre.Console"/>
     <Using Include="Spectre.Console.Json"/>
