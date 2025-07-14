@@ -25,6 +25,8 @@
 
     <Using Include="Spectre.Console"/>
     <Using Include="Spectre.Console.Json"/>
+
+    <Using Include="Smith"/>
   </ItemGroup>
 
   <ItemGroup>
