@@ -1,0 +1,12 @@
+{
+	"servers": {
+		"latex": {
+			"type": "stdio",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"${workspaceFolder}${/}samples${/}latex.cs"
+			]
+		}
+	}
+}
