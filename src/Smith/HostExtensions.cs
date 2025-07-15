@@ -10,37 +10,11 @@ namespace Smith;
 /// </summary>
 public static class HostExtensions
 {
-    extension<TBuilder>(TBuilder builder) where TBuilder : IHostApplicationBuilder
-    {
-        /// <summary>
-        /// Configures the host configuration.
-        /// </summary>
-        public TBuilder ConfigureAppConfiguration(Action<IConfigurationManager> configure)
-        {
-            configure?.Invoke(builder.Configuration);
-            return builder;
-        }
-
-        /// <summary>
-        /// Configures services in the host.
-        /// </summary>
-        public TBuilder ConfigureServices(Action<IServiceCollection> configure)
-        {
-            configure?.Invoke(builder.Services);
-            return builder;
-        }
-    }
-
     extension(IHost app)
     {
         /// <summary>
         /// Gest the host app configuration;
         /// </summary>
         public IConfiguration Configuration => app.Services.GetRequiredService<IConfiguration>();
-
-        /// <summary>
-        /// Gets the default AI client for the app.
-        /// </summary>
-        public IChatClient ChatClient => app.Services.GetRequiredService<IChatClient>();
     }
 }

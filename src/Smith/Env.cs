@@ -6,7 +6,7 @@ namespace Smith;
 
 /// <summary>
 /// Allows retrieving configuration settings for the app environment using the 
-/// default configuration system provided by <see cref="Host.CreateApplicationBuilder()"/>
+/// default configuration system provided by <see cref="Host.CreateApplicationBuilder()"/>.
 /// </summary>
 public static class Env
 {

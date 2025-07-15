@@ -47,15 +47,20 @@ Example using Claude:
 ```csharp
 #:package Smith@0.*
 
-var chat = new Anthropic.AnthropicClient(Throw.
-    configuration["Claude:Key"] ?? throw new InvalidOperationException("Missing Claude:Key configuration."),
+var client = new Anthropic.AnthropicClient(Throw.
+    Env.Get("Claude:Key") ?? throw new InvalidOperationException("Missing Claude:Key configuration."),
     services.GetRequiredService<IHttpClientFactory>().CreateClient("ai")))
     .UseLogging()
     .UseFunctionInvocation();
 
-var provider = services.BuildServiceProvider();
+var builder = App.CreateBuilder(args);
+builder.Services.AddChatClient(new );
+
+var app = builder.Build();
+
 var history = new List<ChatMessage> { new ChatMessage(ChatRole.System, Prompts.System) };
-var chat = provider.GetRequiredService<IChatClient>();
+var chat = app.Services.GetRequiredService<IChatClient>();
+
 var options = new ChatOptions
 {
     ModelId = "claude-sonnet-4-20250514",
