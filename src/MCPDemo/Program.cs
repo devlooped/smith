@@ -21,7 +21,7 @@ await builder.Build().RunAsync();
 public class LaTeX(IHttpClientFactory httpFactory)
 {
     [McpServerTool, Description("Converts LaTeX equations into markdown-formatted images for display inline.")]
-    public async Task<string> LatexToImageMarkdown(
+    public async Task<string> LatexMarkdown(
         [Description("The LaTeX equation to render.")] string latex,
         [Description("Use dark mode by inverting the colors in the output.")] bool darkMode)
     {
