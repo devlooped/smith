@@ -3,10 +3,15 @@
 		"latex": {
 			"type": "stdio",
 			"command": "dotnet",
+			"cwd": "${workspaceFolder}${/}mcp",
 			"args": [
 				"run",
-				"${workspaceFolder}${/}samples${/}latex.cs"
-			]
+				"latex.cs",
+			],
+			"env": { 
+				// Enables Edit and Continue
+				"COMPLUS_ForceENC": "1",
+			}
 		}
 	}
 }
