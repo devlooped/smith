@@ -1,4 +1,39 @@
-﻿using System.Diagnostics;
+/* 
+MCP server that can turn LaTeX formatted equations into their markdown 
+image representation for rendering inline in an editor that supports markdown 
+rendering (i.e. VS Code).
+
+> dotnet run latex.cs
+
+Example mcp.json for VS Code:
+{
+	"servers": {
+		"latex": {
+			"type": "stdio",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"${workspaceFolder}${/}mcp${/}latex.cs"
+			],
+            // optionally hardcode preferences
+			"env": { 
+				"LATEX__DARKMODE": "true",
+                "LATEX__FONTSIZE": "tiny"
+			}
+		}
+	}
+}
+
+Showcases using elicitation for setting preferences: 
+* #latex_setprefs: sets dark mode and font size preferences, 
+* #latex_getprefs: reads the saved preferences.
+*/
+#:package Smith@0.2.5
+#:package DotNetConfig.Configuration@1.2.*
+#:package ModelContextProtocol@0.3.0-preview.*
+#:package Microsoft.Extensions.Http@9.*
+#:package SixLabors.ImageSharp@3.1.*
+
 using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
 using SixLabors.ImageSharp;
@@ -20,8 +55,6 @@ var fonts = new Dictionary<string, string>
     { "Huge", "huge"}
 };
 
-Debugger.Launch();
-
 builder.Services
     .AddHttpClient()
     .AddMcpServer()
@@ -33,34 +66,34 @@ builder.Services
         tool: async (IHttpClientFactory httpFactory, IMcpServer server,
             [Description("The LaTeX equation to render.")] string latex)
             =>
+        {
+            // On first tool run, we ask for preferences for dark mode and font size.
+            if (!initialized)
             {
-                // On first tool run, we ask for preferences for dark mode and font size.
-                if (!initialized)
-                {
-                    initialized = true;
-                    (darkMode, fontSize) = await SetPreferences(server, darkMode, fontSize);
-                }
+                initialized = true;
+                (darkMode, fontSize) = await SetPreferences(server, darkMode, fontSize);
+            }
 
-                var colors = darkMode switch
-                {
-                    true => @"\fg{white}",
-                    false => @"\fg{black}",
-                    null => @"\bg{white}\fg{black}"
-                };
+            var colors = darkMode switch
+            {
+                true => @"\fg{white}",
+                false => @"\fg{black}",
+                null => @"\bg{white}\fg{black}"
+            };
 
-                var query = WebUtility.UrlEncode(@"\dpi{300}\" + (fontSize ?? "small") + colors + new string([.. latex.Where(c => !char.IsWhiteSpace(c))]));
-                var url = $"https://latex.codecogs.com/png.image?{query}";
+            var query = WebUtility.UrlEncode(@"\dpi{300}\" + (fontSize ?? "small") + colors + new string([.. latex.Where(c => !char.IsWhiteSpace(c))]));
+            var url = $"https://latex.codecogs.com/png.image?{query}";
 
-                using var client = httpFactory.CreateClient();
-                using var response = await client.GetAsync(url);
-                response.EnsureSuccessStatusCode();
+            using var client = httpFactory.CreateClient();
+            using var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
 
-                using var image = Image.Load<Rgba32>(await response.Content.ReadAsStreamAsync());
-                using var ms = new MemoryStream();
-                image.SaveAsPng(ms);
-                var base64 = Convert.ToBase64String(ms.ToArray());
-                return $"> ![LaTeX Equation](data:image/png;base64,{base64})";
-            })
+            using var image = Image.Load<Rgba32>(await response.Content.ReadAsStreamAsync());
+            using var ms = new MemoryStream();
+            image.SaveAsPng(ms);
+            var base64 = Convert.ToBase64String(ms.ToArray());
+            return $"> ![LaTeX Equation](data:image/png;base64,{base64})";
+        })
     .WithTool(
         name: "latex_getprefs",
         title: "Get LaTeX Preferences",
@@ -139,4 +172,3 @@ async ValueTask<(bool? darkMode, string? fontSize)> SetPreferences(IMcpServer se
         return (darkMode, fontSize);
     }
 }
-
