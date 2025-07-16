@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using ModelContextProtocol.Server;
 
 namespace Smith;
 
@@ -8,6 +11,30 @@ namespace Smith;
 /// </summary>
 public static class App
 {
+    class AppBuilder(IServiceCollection services)
+    {
+        public IServiceCollection Services => services;
+    }
+
+    class AppServiceFactory(HostApplicationBuilder host) : IServiceProviderFactory<AppBuilder>
+    {
+        public AppBuilder CreateBuilder(IServiceCollection services) => new(services);
+
+        public IServiceProvider CreateServiceProvider(AppBuilder builder)
+        {
+            // If MCP server was registered with AddMcpServer, then tune logging to prevent 
+            // stdio noise from breaking the protocol.
+            if (host.Services.AsEnumerable().Any(x => x.ServiceType == typeof(IConfigureOptions<McpServerOptions>)))
+            {
+                host.Logging.AddConsole(consoleLogOptions =>
+                {
+                    consoleLogOptions.LogToStandardErrorThreshold = LogLevel.Trace;
+                });
+            }
+            return builder.Services.BuildServiceProvider();
+        }
+    }
+
     /// <summary>
     /// Invokes the <see cref="Host.CreateApplicationBuilder(string[]?)"/> with additional pre-configured defaults.
     /// </summary>
@@ -19,7 +46,12 @@ public static class App
     /// </remarks>
     /// <param name="args">The command line args.</param>
     /// <returns>The initialized <see cref="HostApplicationBuilder"/>.</returns>
-    public static HostApplicationBuilder CreateBuilder(string[]? args) => Host.CreateApplicationBuilder(args);
+    public static HostApplicationBuilder CreateBuilder(string[]? args)
+    {
+        var host = Host.CreateApplicationBuilder(args);
+        host.ConfigureContainer(new AppServiceFactory(host));
+        return host;
+    }
 
     /// <summary>
     /// Builds the host app and registers the provided <paramref name="main"/> function as a hosted service to be 
