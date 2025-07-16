@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
+using ModelContextProtocol.Protocol;
 using ModelContextProtocol.Server;
 
 namespace Smith;
@@ -57,6 +58,34 @@ public static class McpExtensions
                 }));
 
             return builder;
+        }
+
+        /// <summary>
+        /// Run the specified initializer function before listing tools (after client initialized).
+        /// </summary>
+        /// <param name="initializer">An initializer that has access to the server instance.</param>
+        public IMcpServerBuilder WithInitializer(Func<IMcpServer, CancellationToken, ValueTask> initializer)
+        {
+            // NOTE: we wrap existing list handler so we avoid breaking existing tools.
+            builder.Services.Configure<McpServerHandlers>(handlers => handlers.ListToolsHandler =
+                new InitializerListTools(initializer, handlers.ListToolsHandler).Execute);
+
+            return builder;
+        }
+    }
+
+    class InitializerListTools(
+        Func<IMcpServer, CancellationToken, ValueTask> initializer,
+        Func<RequestContext<ListToolsRequestParams>, CancellationToken, ValueTask<ListToolsResult>>? handler)
+    {
+        public async ValueTask<ListToolsResult> Execute(RequestContext<ListToolsRequestParams> request, CancellationToken token)
+        {
+            await initializer(request.Server, token);
+
+            if (handler != null)
+                return await handler(request, token);
+
+            return new ListToolsResult();
         }
     }
 }
